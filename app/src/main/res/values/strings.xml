@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">back2barter</string>
+    <string name="title_transaction_list">Transactions</string>
+    <string name="title_transaction_detail">Transaction Detail</string>
+</resources>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mcntech.back2barter.MainActivity"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="64dip"
+        android:id="@+id/img_logo"
+        android:layout_alignParentTop="true" />
+    <View
+        android:id="@+id/row_payee"
+        android:layout_below="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_below="@+id/row_payee"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Payee Address"
+        android:id="@+id/lbl_snd_address"
+        android:textIsSelectable="true"
+        android:scrollHorizontally="false"
+        android:padding="4dp"
+        android:layout_weight="1" />
+
+    <EditText
+        android:layout_below="@+id/row_payee"
+        android:layout_toRightOf="@+id/lbl_snd_address"
+        android:layout_toLeftOf="@+id/btn_getsnd_qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0123456789012345678901234567890123456789"
+        android:id="@+id/txt_snd_address"
+        android:maxLines="3"
+        android:lines="3"
+        android:scrollHorizontally="false"
+        android:padding="4dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
+
+    <Button
+        android:layout_below="@+id/row_payee"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scan Payee"
+        android:id="@+id/btn_getsnd_qrcode" />
+
+    <View
+        android:id="@+id/row_amount"
+        android:layout_below="@+id/txt_snd_address"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/np_currency"
+        android:layout_weight="1"
+        android:layout_below="@+id/row_amount"
+        android:layout_alignParentLeft="true" />
+
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/np4"
+        android:layout_weight="1"
+        android:layout_below="@+id/row_amount"
+        android:layout_toLeftOf="@+id/np3" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/np3"
+        android:layout_weight="1"
+        android:layout_below="@+id/row_amount"
+        android:layout_toLeftOf="@+id/np2"
+        android:layout_marginLeft="-20dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/np2"
+        android:layout_weight="1"
+        android:layout_toLeftOf="@+id/np1"
+        android:layout_below="@+id/row_amount"
+        android:layout_marginLeft="-20dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/np1"
+        android:layout_weight="1"
+        android:layout_below="@+id/row_amount"
+        android:layout_toLeftOf="@+id/np0"
+        android:layout_marginLeft="-20dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/np0"
+        android:layout_weight="1"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/row_amount"
+        android:layout_marginLeft="-20dp" />
+
+
+    <View
+        android:id="@+id/row_pay"
+        android:layout_below="@+id/np_currency"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/lbl_balance"
+        android:layout_below="@+id/row_pay"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Balance" />
+
+    <TextView
+        android:id="@+id/txt_balance"
+        android:layout_below="@+id/row_pay"
+        android:layout_toRightOf="@+id/lbl_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00.00"
+        android:layout_marginLeft="8dp" />
+
+    <Button
+        android:id="@+id/btn_pay"
+        android:layout_below="@+id/row_pay"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay" />
+    <View
+        android:id="@+id/row_rcv"
+        android:layout_below="@+id/btn_pay"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/lbl_rcv_address"
+        android:layout_below="@+id/row_rcv"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Address"
+        android:textIsSelectable="true"
+        android:padding="4dp"
+        android:layout_weight="1" />
+    <TextView
+        android:id="@+id/txt_rcv_address"
+        android:layout_below="@+id/row_rcv"
+        android:layout_toRightOf="@+id/lbl_rcv_address"
+        android:layout_toLeftOf="@+id/img_rcv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0123456789012345678901234567890123456789"
+        android:textIsSelectable="true"
+        android:scrollHorizontally="false"
+        android:padding="4dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
+
+    <Button
+        android:layout_below="@+id/txt_rcv_address"
+        android:layout_toLeftOf="@+id/img_rcv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Receive Payment"
+        android:id="@+id/btn_show_qrcode"
+        android:layout_alignStart="@+id/txt_rcv_address"
+        android:layout_alignEnd="@+id/txt_rcv_address" />
+
+    <ImageView
+        android:layout_below="@+id/row_rcv"
+        android:layout_alignParentRight="true"
+        android:layout_width="128dip"
+        android:layout_height="128dip"
+        android:id="@+id/img_rcv_address" />
+
+    <View
+        android:id="@+id/row_status"
+        android:layout_below="@+id/img_rcv_address"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_below="@+id/row_status"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:id="@+id/lbl_status" />
+
+    <TextView
+        android:layout_below="@+id/row_status"
+        android:layout_toRightOf="@+id/lbl_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not initialized"
+        android:ems="10"
+        android:id="@+id/txt_status" />
+    <Button
+        android:layout_below="@+id/row_status"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transactions"
+        android:id="@+id/btn_transactions"
+        android:layout_alignStart="@+id/txt_rcv_address"
+        android:layout_alignEnd="@+id/txt_rcv_address" />
+</RelativeLayout>
+
+</ScrollView>
