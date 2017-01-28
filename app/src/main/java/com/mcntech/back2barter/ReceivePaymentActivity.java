@@ -34,6 +34,7 @@ import org.bitcoinj.wallet.listeners.KeyChainEventListener;
 import org.bitcoinj.wallet.listeners.ScriptsChangeEventListener;
 import org.bitcoinj.wallet.listeners.WalletCoinsReceivedEventListener;
 import org.bitcoinj.wallet.listeners.WalletCoinsSentEventListener;
+import org.bitcoinj.uri.BitcoinURI;
 
 import java.io.File;
 import java.util.List;

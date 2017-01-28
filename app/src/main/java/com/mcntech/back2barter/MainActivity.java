@@ -2,8 +2,6 @@ package com.mcntech.back2barter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +16,8 @@ import org.bitcoinj.core.*;
 import org.bitcoinj.core.listeners.TransactionConfidenceEventListener;
 import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.script.Script;
+import org.bitcoinj.uri.BitcoinURI;
+import org.bitcoinj.uri.BitcoinURIParseException;
 import org.bitcoinj.wallet.Wallet;
 import org.bitcoinj.wallet.listeners.KeyChainEventListener;
 import org.bitcoinj.wallet.listeners.ScriptsChangeEventListener;
@@ -30,10 +30,8 @@ import com.google.zxing.*;
 import com.google.zxing.common.BitMatrix;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -248,8 +246,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
-    void updateSndAddress(String address) {
-        mSndAddress = address;
+    void updatePaymentInfo(BitcoinURI bitcionURI) {
+        mSndAddress = bitcionURI.getAddress().toString();
+        Coin amount = bitcionURI.getAmount();
+        if(amount != null) {
+            mPaymentBtc = (float) amount.getValue() / 100000000;
+        } else {
+            mPaymentBtc = 0f;
+        }
         runOnUiThread(mRunnableSndAddress);
     }
 
@@ -257,6 +261,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void run() {
             txtSndAddress.setText(mSndAddress);
+            setCurrencyPicker(mCurrencyId, mPaymentBtc);
         }
     };
 
@@ -312,8 +317,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == SND_ADDR_QRCODE) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                updateSndAddress(data.getStringExtra("result"));
+                try {
+                    String  coinUriString = data.getStringExtra("result");
+                    BitcoinURI coinUri = new BitcoinURI(mNetworkparams, coinUriString);
+                    updatePaymentInfo(coinUri);
+                } catch (BitcoinURIParseException e){
 
+                }
             }
         }
     }
@@ -358,7 +368,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d(TAG, "initWallet: awaitRunning");
             kit.awaitRunning();
 
-            updateSndAddress("mupBAFeT63hXfeeT4rnAUcpKHDkz1n4fdw");
+            BitcoinURI coinUri = new BitcoinURI("bitcoin:mupBAFeT63hXfeeT4rnAUcpKHDkz1n4fdw?amount=0.015");
+            updatePaymentInfo(coinUri);
 
             Log.d(TAG, "initWallet: Install callbacks");
             kit.wallet().addCoinsReceivedEventListener(new WalletCoinsReceivedEventListener() {
